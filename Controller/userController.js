@@ -2,6 +2,9 @@ import user from "../Model/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+
+dotenv.config();
+
 export function registerUser(req, res) {
   const data = req.body;
   data.password = bcrypt.hashSync(data.password, 10);
@@ -42,6 +45,7 @@ export function loginUser(req, res) {
               lastName: User.lastName,
               email: User.email,
               roll: User.roll,
+              profilePicture: User.profilePicture,
             },
             process.env.JWT_SECRET
           );
