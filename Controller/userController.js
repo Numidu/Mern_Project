@@ -1,7 +1,7 @@
 import user from "../Model/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
+import dotenv from "dotenv";
 export function registerUser(req, res) {
   const data = req.body;
   data.password = bcrypt.hashSync(data.password, 10);
@@ -43,7 +43,7 @@ export function loginUser(req, res) {
               email: User.email,
               roll: User.roll,
             },
-            "kv123"
+            process.env.JWT_SECRET
           );
 
           res.json({ message: "Login Successful", token: token });
